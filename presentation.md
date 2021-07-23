@@ -18,8 +18,18 @@
   3. début des missions
 
 # Missions
-  - mettre en place un système de debug pour une qmate (photo)
-  - communication entre une nucleo et une qmate grâce au protocol i2c (photo)
+  - mettre en place un système de debug pour une qmate 
+  - communication entre une nucleo et une qmate grâce au protocol i2c 
+
+<figure> 
+<img src="images/qmate.jpg" alt="qmate" width="200"/>
+<figcaption> <b>Illustration 1</b> une qmate </figcaption>
+</figure>
+
+<figure> 
+<img src="images/nucleo.jpg" alt="nucleo" width="200"/>
+<figcaption> <b>Illustration 2</b> une STM32 nucleo-F401RE </figcaption>
+</figure>
 
 # Compétences acquises
   - travail en équipe
