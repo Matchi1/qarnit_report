@@ -1,0 +1,330 @@
+---
+title: "Internship Report"
+author: "Mathieu Chan"
+date: August 29, 2021
+geometry: margin=2cm
+output: pdf_document
+---
+
+<div style="text-align: center"> Rapport de stage: Qarnot </div>
+<div style="text-align: center"> Mathieu CHAN </div>
+<div style="text-align: center"> Stage en informatique </div>
+<div style="text-align: center"> du 01 Juin 2021 au 27 Août 2021 </div>
+<div style="text-align: center"> Université Gustave Eiffel </div>
+
+# Table des matières
+
+i. [Introduction](#introduction)
+ii. [Remerciement](#remerciement)
+iii. [Glossaire](#)
+iii. [QHardware](#qhardware)
+iv. [Missions et Responsabilités](#missionsetresponbilité)
+  - [Mode Debub](#debug)
+    1. [Description](#description1)
+    2. [Les tâches](#missions)
+    3. Analyse critique
+    4. Apport pour l'entreprise
+    5. Apport personnel
+    6. Difficultés et solutions
+  - Communication entre le micro-controlleur et la qmate
+    1. Description
+    2. Les tâches
+    3. Analyse critique
+    4. Apport pour l'entreprise
+    5. Apport personnel
+    6. Difficultés et solutions
+v. [Skills learned](#skillslearned)
+vi. [Conclusion](#Conclusion)
+
+# <a id="remerciement"></a> Remerciement
+
+TODO
+
+# <a id="tableau"></a> Table des figures et tableaux
+
+# <a id="glossaire"></a> Glossaire
+
+# <a id="intro"></a> Introduction
+
+Qarnot est une entreprise qui propose des services et des produits numériques en Europe.
+Ces produits numériques sont des objets qui vont chauffer (radiateurs, chaudières...)
+grâce à des micro-processeurs installés dans ces appareils.
+Ils vont principalement chauffer des logements sociaux, collège, lycée...
+Ces micro-processeurs sont utilisés par des entreprises dans le domaine de
+l'informatique, plus précisément dans le design, la modélisation 3D...
+Les domaines qui nécessitent en général beaucoup de puissance de calculs.
+Qarnot suit, depuis 10 ans, le même principe : "le déchet (chaleur) des uns devient la
+ressource des autres".
+Donc, d'un côté Qarnot vend de la puissance de calcul aux entreprises qui en ont
+le plus besoin et, de l'autre des appareils qui vont chauffer des bâtiments.
+Il y a une économie circulaire qui se met en place.
+
+Du 01 Juin 2021 au 27 Août 2021, j'ai travaillé dans la section QHardware de
+Qarnot en tant que stagiaire. Il y avait 3 employés au total.
+
+# <a id="hardware"></a> Qhardware
+
+## <a id="description1"></a> Description
+
+Cette section se charge de développer des programmes qui seront injecter dans
+les cartes électroniques. Les activités essentiels du service est le développement de
+programmes.
+
+Problématiques: ?
+
+Je suis principalement développeur, je m'occupe de créer du code pour des cartes
+électroniques.
+Mes missions sont les suivantes:
+* Ajouter un mode debug à une carte électronique.
+* Permettre l'envoie d'information d'une qmate vers un micro-controlleur.
+
+# <a id="missions"></a> Missions et responsabilités
+
+Pendant ce stage, la majorité de mes missions concernées la qmate (une carte
+possédant un afficheur) et un micro-controlleur STM32.
+
+Les missions étaient les suivantes:
+  - Création d'un mode debug pour une qmate (~ 1 mois)
+  - Mis en place d'un système de communication entre une qmate et un micro-controlleur
+  - (~ 1 mois)
+  - ...
+
+Les 2 premières semaines du stage étaient surtout dédiés à la documentation et à
+l'apprentissage des bases du système embarqué
+
+## <a id="debug"></a> Debug
+
+### <a id="debug-desc"></a> Description
+
+Ma première mission était de créer un système de debug pour une carte
+électronique. Plusieurs même cartes sont connecté via un bus de communication
+(appelé I2C), le seul moyen d'identifier chaque carte est de lui attribuer un
+identifiant. Le système de debug permet cela.
+Les objectifs sont d'abord d'ajouter le code qui gère le maintien d'un bouton
+pendant 5 seconde. Puis, faire en sorte que l'on puisse incrémenter
+l'identifiant en appuyant sur le bouton (en étant en mode debug), pour
+enfin stocker la valeur en mémoire .
+La carte doit pouvoir retrouver l'identifiant même après la mise hors-tension de
+la carte (il faut donc stocker l'identifiant dans la mémoire morte).
+Créer un code qui marche n'est pas suffisant, il faut en plus qu'il soit
+lisible, sémantiquement correcte et le plus réutilisable possible.
+
+Pour l'organisation de mon code, je me suis beaucoup inspiré de code déjà
+existant dans le projet. Cela m'a permit de créer un code qui respecte les
+normes de l'entreprise. Les conseils de mon tuteur ont aussi été des ressources très
+précieuses dans la construction de mon code.
+
+### <a id="debug-taches"></a> Les tâches
+
+- Implémenter un système de maintien du bouton pendant 5 sec (utilisation de
+  timers et des interruptions)
+- Mettre en place un incrémenteur d'identifiant
+- Stocker l'identifiant de la carte dans la mémoire morte
+- Afficher l'identifiant sur l'afficheur
+
+### <a id="debug_analyse"></a> Analyse critique
+
+Concernant la gestion du projet, je commence toujours par plannifier les grandes
+lignes de ce que je dois faire pour la mission. J'essaye également de comprendre
+quelle partie du code est prioritaire par rapport aux autres, pour avoir de
+bonnes bases pour la suite.
+Je vise, au départ, à créer un code qui fonctionne et qui réponde correctement à la mission.
+Le code doit également être clair et bien organisé pour ne pas perdre de temps
+sur la relecture de code.  J'entame ensuite la relecture du code pour permettre
+une potentielle optimisation du code, mais surtout faire en sorte que le code soit
+sémantiquement correcte et clair.
+
+L'analyse du code manquer de rigueur de ma part car je n'avais pas assez pris de
+recul sur mon propre code et sur l'organisation du code.
+
+Les objectifs sont les suivantes :
+- Avoir un système de maintien de bouton qui marche
+- Afficher l'identifiant de la qmate sur l'afficheur
+- L'identifiant s'incrémente bien en mode debug
+- L'identifiant est bien stocker en mémoire
+
+### <a id="debug-entreprise"></a> Apport pour l'entreprise
+
+Mon travail peut-être réutilisable pour d'autres types de carte électronique.
+En effet, j'ai créé un module assez portable pour qu'il soit utilisable sur
+plusieurs types de carte.
+Ce que j'ai viser avant tout c'est de créer un code qui soit compréhensible
+rapidement, et le plus réutilisable aussi.
+
+### <a id="debug-personnel"></a> Apport personnel
+
+**IN PROGRESS**
+
+J'ai compris comment on travaille en équipe en informatique. On doit faire de
+son mieux pour écrire un code qui soit clair et lisible. Créer un code qui soit
+fonctionnel n'est pas suffisant. On passe la plupart de notre temps à lire du code,
+donc l'écriture du code peut impacter le travail du collègue mais aussi son
+propre travail. Un code propre a aussi plus de chance d'être réutilisable et
+durable.
+
+### <a id="debug-diffculte"></a> Difficulté et Solutions
+
+J'ai rencontré des difficultés assez diverses pendant cette mission.
+Tout d'abord un problème technique qui concerne le logiciel qui permet
+d'injecter le code dans la carte électronique. En effet, le logiciel n'était pas
+fonctionnel sur mon ordinateur. J'ai donc dû dégrader la version de mon logiciel
+et appliquer quelque patch pour qu'il puisse marcher. Cela m'a pris environs 3
+jours.
+Les difficultés lié au projet concerné surtout l'organisation du code. En effet,
+mon code était très peu portable et pas assez organisé au début.
+La difficulté est donc de comprendre exactement le rôle du module et d'organiser
+son code de telle sorte que le module respecte exactement ce qu'il doit faire.
+Mon tuteur m'a énormément aidé sur l'organisation de mon code grâce aux
+commentaires qu'il a fait sur mon code.
+
+## <a id="comm"></a> communication entre le micro-controlleur et la qmate
+
+### <a id="comm-desc"></a> Description
+
+**IN PROGRESS**
+
+La communication entre le micro-controlleur et la qmate se fait via le protocol i2c.
+Cette communication doit permettre l'envoie d'information de la qmate vers le
+micro-controlleur (la version de la qmate, la tension, la puissance...).
+Ces informations sont utiles pour savoir si une carte a besoin d'une mis à jour,
+si elle est allumée par exemple.
+On a d'un côté une carte (appelé qmate) qui va contenir des informations sur
+elle-même et de l'autre une carte centrale (un micro-controlleur) qui va
+se charger de récupérer ces informations.
+
+### <a id="comm-taches"></a> Les tâches
+
+- Mettre un place un système de registre dans la qmate pour la lecture et
+  l'écriture des données sur la qmate (puissance, tension, version, les
+  entrées-sorties)
+- Correction d'un bug lié à l'affichage du mode debug sur l'afficheur de la
+  qmate.
+- Créer un module qmate_usb qui va permettre de faire les requêtes à la qmate.
+  (récupération des informations et écriture de l'état des entrées-sorties)
+- Ajouter un code au micro-controlleur pour permettre de faire des tests sur l'envoie des
+  requêtes et la réception des informations. (Les informations sont affichées
+  sur la console)
+- Intégrer la qmate usb dans le code du qb tout en conservant le code de la
+  qmate de base (donc mettre en place un programme qui face la reconnaissance
+  des types de qmate)
+- Vérification des entrées-sorties en effectuant des tests
+
+### <a id="comm-analyse"></a> Analyse critique
+
+**IN PROGRESS**
+
+J'ai plannifié mon projet en commençant par m'occuper de la partie stockage des
+données dans la qmate. Cette phase est importante car c'est ce qui permet
+d'envoyer les informations à la carte centrale.
+Commencer par le code de la carte centrale n'aurait eu aucun sens car je n'aurais
+pas pu vérifier le code directement.
+Après avoir fini le code pour la qmate, je me suis chargé du code de le micro-controlleur.
+
+Comme pour la mission précédente, je me suis concentré à faire un code qui
+marche et qui est bien une solution à la mission imposée tout en essayant de
+créer un code clair et bien découpé.
+1. Mettre en place un système de registres dans la qmate pour permettre l'envoie
+   des informations
+2. Créer un code pour le micro-controlleur qui va effectuer les demandes d'informations à la
+   qmate
+3. Vérfication de la connection entre la qmate et le micro-controlleur
+4. Vérification de la pertinence des informations reçu
+5. Simplification du code
+
+Ensuite, je commence la simplification du code (à l'aide des commentaires de mon
+tuteur sur le code que j'ai fournit).
+Je continue également à faire des tests pendant la correction du code.
+En effet, les tests sont très importants tout au long du développement, il peut
+toujours y avoir des imprévus, des résultat auxquelles on ne s'y attendait.
+C'est pourquoi tester tout au long du codage n'est pas négligeable.
+Un code de test est intégré dans le micro-controlleur. le software va simulé des demandes
+d'informations à la qmate et afficher les données reçu sur une console.
+
+Les tests sont concluant, le code de la qmate effectue exactement ce que l'on
+lui demande faire. La qmate renvoie bien les informations suivantes:
+* la version
+* le tension
+* la puissance
+* l'état des entrées / sorties
+
+Ces informations sont de même correctes.
+
+En attendant le retour de mon tuteur son mon code, je me suis chargé de préparer
+le prochain projet portant sur la chaudière.
+Celle-ci utilise également le code de la qmate, donc même si le code de la qmate
+n'est pas encore opérationnel, j'ai essayer d'avancer au maximum le code de la
+qb.
+
+Les objectifs sont les suivantes :
+- Avoir un système de registres qui marche
+- Mettre en place un système de communication entre la qmate et un
+  micro-controlleur
+- Vérifier l'exactitude des informations reçues depuis la qmate
+- Intégrer la qmate usb au qb (en conservant la qmate classique)
+
+### <a id="comm-entreprise"></a> Apport pour l'entreprise
+
+**IN PROGRESS**
+
+Création d'un code fonctionnel sur la qmate usb.
+Code portable et réutilisable donc durable.
+Développement d'un code pour un device, le code pour le device sera toujours
+utile.
+
+### <a id="comm-personnel"></a> Apport personnel
+
+**IN PROGRESS**
+
+Je comprend mieux la communication entre 2 cartes via l'I2C.
+Compréhension un peu plus général sur comment fonctionne une carte électronique
+et le programme qu'il y a derrière.
+J'ai beaucoup appris sur comment organiser son propre code, comment le
+découper. Un code qui est bien découper est très lisible et compréhensible.
+L'information est aussi retrouvé rapidement (par exemple, trouver le code
+responsable de l'affiche dans le fichier display.c)
+
+### <a id="comm-difficulte"></a> Difficulté et Solutions
+
+**IN PROGRESS**
+
+J'ai eu une compréhension assez lente de ce que l'on attendait de moi au début.
+Pour y remédier, j'ai fait beaucoup de schéma pour comprendre un maximum ma
+mission.
+J'ai également préparé mes question pour comprendre ce que je ne comprenais pas
+dans la mission et éviter d'être non productif.
+En mettant à part la compréhension du sujet, le reste c'est bien déroulé.
+Il y avait beaucoup de plus de test à effectuer car on doit implémenter 2 code
+pour 2 cartes différentes, il faut donc s'assurer que la communication entre les
+2 cartes soit bonne, que les données soient cohérentes entre celle reçu par le
+micro-controlleur et ce que la qmate à envoyer.
+J'ai également réfléchis aux différents cas de figure pour lequel il pourrait y
+avoir des problèmes dans les données. La difficulté est donc de prendre du recul
+sur son propre code et de comprendre ce que l'on fait et ce que l'on souhaite
+faire.
+
+# <a id="tableau"></a> compétences acquises
+
+J'ai appris, pendant ce stage, beaucoup de nouvelles compétences.
+Des compétences techniques en informatique:
+  - sur le langage C
+  - sur les outils de versionnage (notamment gitlab)
+  - sur le système embarqué
+Mais aussi des compétences plus générale:
+  - le travail d'équipe
+  - la culture générale informatique
+
+Le stage m'a permis de découvrir le monde du système embarqué, qu'il n'y a pas
+qu'une seule solution à un problème. La difficulté majeure est qu'il faut bien
+comprendre ce que l'on fait et qu'il faut beaucoup tester pour répondre
+correctement aux missions.
+
+Ce que j'ai appris à l'université m'ont permis d'accomplir les tâches qui m'ont
+été donné de faire mais m'ont aussi permis de mieux m'organiser dans mon
+travail.
+
+# <a id="tableau"></a> Conclusion
+
+Pendant ce stage, j'ai appris beaucoup de choses et j'ai surtout gagner de
+l'expérience très précieuse. Pendant ces 3 mois, j'ai été capable de suivre le
+rythme de travail et de m'adapter.
+  - what you want to learn more about
